@@ -26,8 +26,10 @@ https://render.com/deploy?repo=https://github.com/ExitAnt-dev/fibo-rr-lighter-3
   in Frankfurt. Do not move it to a US region.
 - **A Lighter account with USDC in Perps.** Connect your wallet at [app.lighter.xyz](https://app.lighter.xyz) and
   deposit USDC — the first deposit creates the account. USDC in spot is not trading collateral.
-- **Account type: Simple Trading Account.** The bot switches a Unified Trading Account to Simple by itself when
-  no position is open (spot USDC must stay outside the collateral so the optional cash vault is kept apart).
+- **Account type: Simple Trading Account.** The bot switches a Unified Trading Account to Simple by itself, also with
+  positions open (spot USDC must stay outside the collateral so the optional cash vault is kept apart): if Perps alone would hold
+  less than 1.5 × the margin the positions need, it first moves the shortfall from spot USDC (never the vault's share); if even that
+  cannot cover 1.5 × the maintenance margin, it changes nothing and tells you how much USDC to move.
 - **Account tier: Plus.** The ExitAnt fee is only accepted on Plus accounts. If your account is on Standard, the bot
   asks for your consent in Telegram and switches it to Plus (Plus adds Lighter's own small trading fee).
 - **ExitAnt fee approval.** At the first start the bot approves the ExitAnt integrator fee for your account
