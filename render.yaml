@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: exitant-fibo-rr-lighter
+    runtime: image
+    plan: starter
+    region: frankfurt
+    numInstances: 1
+    image:
+      url: docker.io/exitant/exitant-fibo-rr-lighter:3
+    disk:
+      name: fibo-rr-lighter-state
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: LIGHTER_WALLET_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
